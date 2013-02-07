@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121009145318) do
+ActiveRecord::Schema.define(:version => 20130111183855) do
 
   create_table "ambientes", :force => true do |t|
     t.integer  "turma_id"
@@ -36,22 +36,6 @@ ActiveRecord::Schema.define(:version => 20121009145318) do
   create_table "assuntos_livros", :id => false, :force => true do |t|
     t.integer "assunto_id", :null => false
     t.integer "livro_id",   :null => false
-  end
-
-  create_table "audio_visuais", :force => true do |t|
-    t.integer  "genero_midia_id"
-    t.integer  "localizacao_id"
-    t.string   "tombo_seduc"
-    t.string   "tombo_l"
-    t.string   "tipo"
-    t.string   "titulo"
-    t.string   "subtitulo"
-    t.string   "producao"
-    t.string   "local_producao"
-    t.date     "data_producao"
-    t.string   "obs"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "autores", :force => true do |t|
@@ -86,19 +70,17 @@ ActiveRecord::Schema.define(:version => 20121009145318) do
 
   create_table "carts", :force => true do |t|
     t.string   "token"
-    t.integer  "user_id",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
-  create_table "configuracoes", :force => true do |t|
+  create_table "configuracaos", :force => true do |t|
     t.integer  "user_id"
     t.integer  "dias_posse"
     t.integer  "dias_para_aviso"
-    t.integer  "unidade"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "unidade_id"
   end
 
   create_table "data_files", :force => true do |t|
@@ -146,11 +128,6 @@ ActiveRecord::Schema.define(:version => 20121009145318) do
     t.datetime "updated_at"
   end
 
-  create_table "dpus_emprestimos", :id => false, :force => true do |t|
-    t.integer "dpu_id",        :null => false
-    t.integer "emprestimo_id", :null => false
-  end
-
   create_table "editoras", :force => true do |t|
     t.string   "nome"
     t.string   "cidade"
@@ -170,18 +147,16 @@ ActiveRecord::Schema.define(:version => 20121009145318) do
     t.integer  "tipo_emprestimo"
     t.integer  "funcionario"
     t.integer  "aluno"
+    t.integer  "nome"
     t.integer  "unidade_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "alunoclasse_id"
+    t.date     "ano"
     t.date     "data_emprestimo"
     t.date     "data_devolucao"
-    t.integer  "dias_atrasados",  :default => 0
     t.boolean  "status"
-  end
-
-  create_table "emprestimos_livros", :id => false, :force => true do |t|
-    t.integer "autor_id", :null => false
-    t.integer "livro_id", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "dias_atrasados"
   end
 
   create_table "emprestimos_realizados", :force => true do |t|
@@ -208,7 +183,7 @@ ActiveRecord::Schema.define(:version => 20121009145318) do
   end
 
   create_table "identificacaos", :force => true do |t|
-    t.string   "codigo"
+    t.integer  "codigo"
     t.string   "livro"
     t.string   "subtitulo"
     t.text     "obs"
@@ -231,18 +206,6 @@ ActiveRecord::Schema.define(:version => 20121009145318) do
     t.datetime "updated_at"
   end
 
-  create_table "itens_emprestimos", :force => true do |t|
-    t.integer  "emprestimo_id"
-    t.integer  "audio_visual_id"
-    t.integer  "livro_id"
-    t.integer  "dicionario_enciclopedia_id"
-    t.integer  "mapas_id"
-    t.integer  "periodico_id"
-    t.integer  "jogo_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "jogos", :force => true do |t|
     t.integer  "localizacao_id"
     t.string   "tombo_seduc"
@@ -252,9 +215,9 @@ ActiveRecord::Schema.define(:version => 20121009145318) do
     t.string   "tipo"
     t.string   "fabricante"
     t.string   "obs"
+    t.boolean  "status",         :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "status",         :default => true
   end
 
   create_table "livros", :force => true do |t|
@@ -270,10 +233,10 @@ ActiveRecord::Schema.define(:version => 20121009145318) do
     t.string   "local_edicao"
     t.text     "resumo"
     t.text     "obs"
+    t.string   "tipo"
+    t.boolean  "status",           :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "status",           :default => true
-    t.string   "tipo"
   end
 
   create_table "localizacoes", :force => true do |t|
@@ -291,13 +254,13 @@ ActiveRecord::Schema.define(:version => 20121009145318) do
     t.string   "area"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "configuracao_id"
     t.integer  "find_id"
   end
 
   create_table "mapas", :force => true do |t|
     t.integer  "editora_id"
     t.integer  "localizacao_id"
+    t.string   "titulo"
     t.string   "tombo_seduc"
     t.string   "tombo_l"
     t.string   "tipo"
@@ -308,10 +271,9 @@ ActiveRecord::Schema.define(:version => 20121009145318) do
     t.string   "local_edicao"
     t.string   "edicao"
     t.text     "obs"
+    t.boolean  "status",         :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "titulo"
-    t.boolean  "status",         :default => true
   end
 
   create_table "midias", :force => true do |t|
@@ -326,9 +288,9 @@ ActiveRecord::Schema.define(:version => 20121009145318) do
     t.string   "local_producao"
     t.datetime "data_producao"
     t.string   "obs"
+    t.boolean  "status",         :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "status",         :default => true
   end
 
   create_table "midias_musicas", :id => false, :force => true do |t|
@@ -357,9 +319,9 @@ ActiveRecord::Schema.define(:version => 20121009145318) do
     t.string   "local_producao"
     t.date     "data_producao"
     t.string   "obs"
+    t.boolean  "status",         :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "status",         :default => true
   end
 
   create_table "possuis", :force => true do |t|
@@ -415,11 +377,11 @@ ActiveRecord::Schema.define(:version => 20121009145318) do
 
   create_table "unidades", :force => true do |t|
     t.string   "nome"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.integer  "unidades_gpd_id"
     t.string   "endereco"
+    t.string   "string"
     t.integer  "num"
+    t.integer  "integer"
     t.string   "complemento"
     t.string   "bairro"
     t.string   "cidade"
@@ -428,8 +390,11 @@ ActiveRecord::Schema.define(:version => 20121009145318) do
     t.string   "diretor"
     t.string   "coordenador"
     t.string   "responsavel_bib"
-    t.text     "obs"
+    t.string   "obs"
+    t.string   "text"
     t.integer  "tipo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "unidades_gpds", :force => true do |t|

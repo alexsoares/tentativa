@@ -212,6 +212,133 @@ def consulta_liv
    end
 end
 
+def consulta_liv_are
+  if params[:area].present?
+    if params[:type_area].to_i == 1
+    area = Area.find(params[:area][:id])
+    @areas = area.livros.all(:include => [:localizacao], :conditions => ["localizacoes.unidade_id = ?",current_user.unidade_id]).each
+      render :update do |page|
+         page.replace_html 'dados', :partial => "areas_livro"
+      end    
+    else
+      if params[:type_area].to_i == 2
+        area = Area.find(params[:area][:id])
+        @areas = area.livros.all
+          render :update do |page|
+            #page.replace_html 'dados', :partial => "livros_area"
+            page.replace_html 'dados', :partial => "areas_livro"
+          end
+      end
+    end
+  end
+end
+
+def consulta_liv_aut
+  if params[:autor].present?
+    if params[:type_autor].to_i == 1
+    autor = Autor.find(params[:autor][:id])
+    @autores = autor.livros.all(:include => [:localizacao], :conditions => ["localizacoes.unidade_id = ?",current_user.unidade_id]).each
+      render :update do |page|
+         page.replace_html 'dados', :partial => "autores_livro"
+      end
+    else
+      if params[:type_autor].to_i == 2
+        autor = Autor.find(params[:autor][:id])
+        @autores = autor.livros.all
+          render :update do |page|
+            #page.replace_html 'dados', :partial => "livros_area"
+            page.replace_html 'dados', :partial => "autores_livro"
+          end
+      end
+    end
+  end
+end
+
+def consulta_liv_ass
+  if params[:assunto].present?
+    if params[:type_assunto].to_i == 1
+    assunto = Assunto.find(params[:assunto][:id])
+    @assuntos = assunto.livros.all(:include => [:localizacao], :conditions => ["localizacoes.unidade_id = ?",current_user.unidade_id]).each
+      render :update do |page|
+         page.replace_html 'dados', :partial => "assuntos_livro"
+      end
+    else
+      if params[:type_assunto].to_i == 2
+        assunto = Assunto.find(params[:assunto][:id])
+        @assuntos = assunto.livros.all
+          render :update do |page|
+            page.replace_html 'dados', :partial => "assuntos_livro"
+          end
+      end
+    end
+  end
+end
+
+def consulta_liv_edi
+  if params[:editora].present?
+    if params[:type_editora].to_i == 1
+    editora = Editora.find(params[:editora][:id])
+    @editoras = editora.livros.all(:include => [:localizacao], :conditions => ["localizacoes.unidade_id = ?",current_user.unidade_id]).each
+      render :update do |page|
+         page.replace_html 'dados', :partial => "editoras_livro"
+      end
+    else
+      if params[:type_editora].to_i == 2
+        editora = Editora.find(params[:editora][:id])
+        @editoras = editora.livros.all
+          render :update do |page|
+            page.replace_html 'dados', :partial => "editoras_livro"
+          end
+      end
+    end
+  end
+end
+
+
+def consulta_liv_tit
+  if params[:titulo].present?
+    if params[:type_titulo].to_i == 1
+     titulo = Identificacao.find(params[:titulo][:id])
+    @titulos = titulo.livros.all(:include => [:localizacao], :conditions => ["localizacoes.unidade_id = ?",current_user.unidade_id]).each
+      render :update do |page|
+         page.replace_html 'dados', :partial => "titulos_livro"
+      end
+    else
+      if params[:type_titulo].to_i == 2
+        titulo = Identificacao.find(params[:titulo][:id])
+        @titulos = titulo.livros.all
+          render :update do |page|
+            page.replace_html 'dados', :partial => "titulos_livro"
+          end
+      end
+    end
+  end
+end
+
+
+def consulta_liv_tip
+  if params[:livro].present?
+    if params[:type_tipo].to_i == 1
+
+    tipo = Livro.find(params[:livro][:tipo])
+    @livros = Livro.find.all(:include => [:localizacao], :conditions => ['tipo = ? and localizacoes.unidade_id = ?', $tipo, current_user.unidade_id]).each
+
+      render :update do |page|
+         page.replace_html 'dados', :partial => "tipos_livro"
+      end
+    else
+      if params[:type_editora].to_i == 2
+        tipo = Livro.find(params[:livro][:id])
+        @livros = Livro.find.all
+          render :update do |page|
+            page.replace_html 'dados', :partial => "editoras_livro"
+          end
+      end
+    end
+  end
+end
+
+
   def filtrar    
     if params[:busca].present?
       @identificacoes = Identificacao.all(:conditions =>["livro like ?", params[:busca][:busca]+"%"])
@@ -302,6 +429,7 @@ end
     @autores  = Autor.all(:order => "nome ASC")
     @areas = Area.all(:order => 'nome ASC')
     @editoras = Editora.all(:order => 'nome ASC')
+    @titulos = Identificacao.all(:order => 'livro ASC')
     if current_user.unidade_id == 53
       @localizacoes = Localizacao.all(:include => :unidade,:order => 'local_guardado ASC')
     else

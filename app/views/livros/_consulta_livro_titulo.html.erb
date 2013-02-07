@@ -1,0 +1,13 @@
+  <table width="100%" align="center" >
+   <tr>
+     <td colspan="2"align="right"><font size="3"> <b class="label_busca">Selecionar Título:</b></font>
+
+      
+       <%= select_tag("titulo[id]", options_for_select(@titulos.collect { |ff| [truncate(ff.livro,:length => 40, :omission => "..."), ff.id] })) %>
+
+        <%= submit_tag "Filtrar", :class => "btn_filtrar" %>
+
+  
+     </td>
+   </tr>
+  </table>

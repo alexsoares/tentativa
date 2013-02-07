@@ -1,0 +1,10 @@
+  <table width="100%" align="center" >
+   <tr>
+     <td colspan="2"align="right"><font size="3"> <b class="label_busca">Selecionar Editora:</b></font>
+       <b class="label_busca"><%= collection_select(:editora, :id, @editoras, :id, :nome) %></b>
+        <%= submit_tag "Filtrar", :class => "btn_filtrar" %>
+
+  
+     </td>
+   </tr>
+  </table>

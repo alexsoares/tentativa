@@ -1,0 +1,40 @@
+<div id="interno2">
+<% title "LIVROS", :id =>"livros" %>
+ <div class="tabs">
+   <div id="caixa_titulo">
+    <font size="3"><strong>CONSULTA LIVRO POR ÁREA</strong></font><br/>
+  </div>
+  <div class="tabs">
+        <% form_remote_tag :url => consultaLivAre_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+            <table width="100%" align="center" bgcolor="#DCDCDC" >
+          <tr>
+            <td>
+              <a href="#" class="filtro"><%= radio_button_tag(:type_area, "1")%></a>Na unidade
+              <a href="#" class="filtro"><%= radio_button_tag(:type_area, "2") %></a>Na SEDUC (Todas Unidades)
+            </td>
+         </tr>
+           <tr>
+           <td><div class="consulta" style="display:none"> <%= render "consulta_livro_area.html" %> </div></td>
+           
+
+         </tr>
+    </table>
+    <% end %>
+   <br/>
+    <hr/>
+       <div id="dados"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
+    <table>
+    <tr>
+     <td width="6%"align="left" > <%= link_to image_tag("/stylesheets/images/voltar.png", :size => "35x35"), root_path, :title => "Voltar" %></td>
+     <td align="left"><%= link_to image_tag("/stylesheets/images/consulta.png", :size => "40x40"), consultaLivAre_path, :title => "Nova Consulta" %></td>
+    </tr>
+  </table>
+ </div>
+ </div>
+</div>
+
+
+
+
+
+

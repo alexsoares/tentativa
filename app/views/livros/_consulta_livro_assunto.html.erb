@@ -1,0 +1,10 @@
+  <table width="100%" align="center" >
+   <tr>
+     <td colspan="2"align="right"><font size="3"> <b class="label_busca">Selecionar Assunto:</b></font>
+       <b class="label_busca"><%= collection_select(:assunto, :id, @assuntos, :id, :descricao) %></b>
+        <%= submit_tag "Filtrar", :class => "btn_filtrar" %>
+
+  
+     </td>
+   </tr>
+  </table>

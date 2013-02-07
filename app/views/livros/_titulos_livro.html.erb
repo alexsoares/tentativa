@@ -8,7 +8,7 @@
          </tr>
           <tr bgcolor="#F5F5F5">
            <%$t=0%>
-           <% @areas.livros.each do |livro| %>
+           <% @titulos.each do |livro|    %>
               <%$t = $t+1%>
               <tr bgcolor="#F5F5F5">
               <td align="left"><%= livro.localizacao.unidade.nome%></td>

@@ -1,11 +1,3 @@
-  <table>
-    <tr>
-      <td align="right"><b>TOTAL DE PUBLICAÇÕES: </b>
-         <font color ="red "size="2"><b><%= @contador %></b></font>
-      </td>
-   </tr>
-  </table>
-<table width="100%" align="center" >
    <tr>
      <td colspan="2"align="right"><font size="4"><b class="label_busca">Digitar dado para consulta:</b></font>
          <%= text_field_tag :search, params[:search], :class=> "txt_busca" %>
@@ -13,4 +5,4 @@
          <%= submit_tag "Filtrar", :class => "btn_filtrar" %>
      </td>
    </tr>
-  </table>
+

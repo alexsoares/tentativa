@@ -43,15 +43,30 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resumo '/resumo/:livro', :controller => 'livros', :action => 'resumo'
   map.current_cart 'cart', :controller => 'carts', :action => 'show'
+
   map.consultaDic '/consultaDic', :controller => 'dicionario_enciclopedias', :action => 'consulta_dic'
   map.consultaLiv '/consultaLiv', :controller => 'livros', :action => 'consulta_liv'
+  map.consultaLivAre '/consultaLivAre', :controller => 'livros', :action => 'consulta_liv_are'
+  map.consultaLivAut '/consultaLivAut', :controller => 'livros', :action => 'consulta_liv_aut'
+  map.consultaLivAss '/consultaLivAss', :controller => 'livros', :action => 'consulta_liv_ass'
+  map.consultaLivEdi '/consultaLivEdi', :controller => 'livros', :action => 'consulta_liv_edi'
+  map.consultaLivTit '/consultaLivTit', :controller => 'livros', :action => 'consulta_liv_tit'
+  map.consultaLivTip '/consultaLivTip', :controller => 'livros', :action => 'consulta_liv_tip'
+
   map.consultaJog '/consultaJog', :controller => 'jogos', :action => 'consulta_jog'
+
   map.consultaMap '/consultaMap', :controller => 'mapas', :action => 'consulta_map'
+
   map.consultaAut '/consultaAut', :controller => 'autores', :action => 'consulta_aut'
   map.consultaAutLiv '/consultaAutLiv', :controller => 'autores', :action => 'consulta_aut_liv'
+
+
   map.consultaTipo '/consultaTipo', :controller => 'livros', :action => 'consulta_tipo'
+
   map.consultaAre '/consultaAre', :controller => 'areas', :action => 'consulta_are'
-  map.consultaAreLiv '/consultaAreLiv', :controller => 'areas', :action => 'consulta_are_liv'
+  
+
+
   map.consultaEdi '/consultaEdi', :controller => 'editoras', :action => 'consulta_edi'
   map.consultaEdiLiv '/consultaEdiLiv', :controller => 'editoras', :action => 'consulta_edi_liv'
   map.consultaTit '/consultaTit', :controller => 'identificacaos', :action => 'consulta_tit'

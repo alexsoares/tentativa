@@ -97,19 +97,17 @@ display: none;
                   <%end%>
                      <li><a>Consulta</a>
                        <ul>
-                        <li><a>Local</a>
-                          <ul>
-                           <li><%= link_to "Dicio.& Enciclo.", consultaDic_path %></li>
+                          <li><%= link_to "Dicio.& Enciclo.", consultaDic_path %></li>
                            <li><%= link_to "Jogos", consultaJog_path %></li>
                            <li><a href="#"><b>Livros</b></a>
                               <ul>
                                  <li><%= link_to "Diversas", consultaLiv_path %></li>
-                                 <li><%= link_to "Por Autor", consultaAutLiv_path %></li>
-                                 <li><%= link_to "Por Área", consultaAreLiv_path %></li>
-                                 <li><%= link_to "Por Assunto", consultaAsuLiv_path %></li>
-                                 <li><%= link_to "Por Editora", consultaEdiLiv_path %></li>
-                                 <li><%= link_to "Por Títulos", consultaTit_path %></li>
-                                 <li><%= link_to "Por Típos", consultaTipo_path %></li>
+                                 <li><%= link_to "Por Autor", consultaLivAut_path %></li>
+                                 <li><%= link_to "Por Área", consultaLivAre_path %></li>
+                                 <li><%= link_to "Por Assunto", consultaLivAss_path %></li>
+                                 <li><%= link_to "Por Editora", consultaLivEdi_path %></li>
+                                 <li><%= link_to "Por Títulos", consultaLivTit_path %></li>
+                                 <li><%= link_to "Por Típos", consultaLivTip_path %></li>
                               </ul>
                            </li>
                            <li><%= link_to "Mapas", consultaMap_path %></li>
@@ -121,19 +119,9 @@ display: none;
                                  <li><%= link_to "Por Titulo", consultaMus_path %></li>
                               </ul>
                            </li>
-                         </ul>
-                        </li>
-                         <li><a>SEDUC</a>
-                           <ul>
-                             <li><%= link_to "Dicionários" %></li>
-                             <li><a href="#"><b>Livros</b></a>
-                                <ul>
-                                  <li><%= link_to "Por Área", consultaAreLiv_path %></li>
-                                  <li><%= link_to "Por Assuntos", consultaAsu_path %></li>
-                                </ul>
-                              </li>
-                           </ul>
-                         </li>
+
+
+
                        </ul>
                       </li>
                  </ul>

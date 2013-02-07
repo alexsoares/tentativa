@@ -48,6 +48,7 @@ before_filter :load_resources
 
 
 def consulta_are
+  $teste= params[:area_id]
   unless params[:search].present?
     if params[:type_of].to_i == 3
       @contador = Area.all.count
@@ -67,16 +68,34 @@ def consulta_are
   end
 end
 
-def consulta_are_liv
-end
+def consulta_are_liv1
+ render "consulta_are_liv"
+end  
 
-def consulta_area_livro
-       session[:area] = params[:area_id]
-       @areas = Area.find(session[:area])
+
+def consulta_are_liv
+    
+    $teste= params[:area_id]
+    $teste1= params[:type_area].to_i
+  unless params[:search_area_id].present?
+  if params[:type_area].to_i == 1
+   session[:area] = params[:area_id]
+    @areas = Area.find(session[:area])
+       render :update do |page|
+         page.replace_html 'dadosareas', :partial => "areas_livro1"
+      end
+    end
+  else
+  if params[:type_area].to_i == 2
+    $teste= params[:type_area].to_i
+    session[:area] = params[:area_id]
+    @areas = Area.find(session[:area])
        render :update do |page|
          page.replace_html 'dadosareas', :partial => "areas_livro"
       end
+    end
   end
+end
 
 
 protected
